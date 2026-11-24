@@ -1,0 +1,14 @@
+#!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-scan.sgmodule
+#!name=G1 SKU Scan
+#!desc=Thu thập mọi SKU thật từ one.google.com, xem báo cáo tại one.google.com/g1-sku-report
+#!system=ios
+
+[Rule]
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+
+[Script]
+g1-sku-scan = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-sku-scan.js
+g1-sku-report = type=http-request,pattern=^https:\/\/one\.google\.com\/g1-sku-report\/?(?:\?.*)?$,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-sku-report.js
+
+[MITM]
+hostname = %APPEND% one.google.com
