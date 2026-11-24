@@ -1,0 +1,13 @@
+#!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-apple.sgmodule
+#!name=G1 DO APPLE STOREKIT
+#!desc=Bat traffic Apple de thay list goi Google One that (ca free an)
+#!system=ios
+
+[Rule]
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+
+[Script]
+g1-apple = type=http-response,pattern=^https:\/\/([a-z0-9-]+\.)*(itunes\.apple\.com|apps\.apple\.com|xp\.apple\.com|amp-api\.apps\.apple\.com),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-apple.js
+
+[MITM]
+hostname = %APPEND% buy.itunes.apple.com, *.itunes.apple.com, xp.apple.com, *.apps.apple.com, amp-api.apps.apple.com
