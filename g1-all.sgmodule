@@ -1,0 +1,12 @@
+#!name=G1 All-in-One
+#!desc=Gộp tất cả offer free + giảm giá: Ultra 30TB free 1 tháng, Pro 12 tháng -90%, 20TB 3 tháng -90%, fallback -75%
+#!system=ios
+
+[Rule]
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+
+[Script]
+g1-all = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=g1-all.js
+
+[MITM]
+hostname = %APPEND% one.google.com
