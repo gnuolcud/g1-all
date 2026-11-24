@@ -1,13 +1,13 @@
 #!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.sgmodule
-#!name=G1 PROBE FREE v2
-#!desc=Do free 1 thang tier khac + co che giam-100p (12 thang free?)
+#!name=G1 DO APPLE STOREKIT
+#!desc=Bat traffic Apple de thay list goi Google One that (ca free an)
 #!system=ios
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 
 [Script]
-g1-probe = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/bf3f973/g1-all.js
+g1-apple = type=http-response,pattern=^https:\/\/([a-z0-9-]+\.)*(itunes\.apple\.com|apps\.apple\.com|xp\.apple\.com),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.js
 
 [MITM]
-hostname = %APPEND% one.google.com
+hostname = %APPEND% one.google.com, buy.itunes.apple.com, *.itunes.apple.com, xp.apple.com, *.apps.apple.com, amp-api.apps.apple.com
