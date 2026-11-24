@@ -3,7 +3,11 @@
 "use strict";
 
 (function () {
-  var COLLECTOR = "http://100.107.231.43:8787/skus";
+  // Gửi về cả WiFi nội bộ lẫn Tailscale — cái nào thông thì nhận
+  var COLLECTORS = [
+    "http://192.168.2.8:8787/skus",
+    "http://100.107.231.43:8787/skus"
+  ];
   var url = (typeof $request === "object" && $request) ? $request.url : "";
   var body = (typeof $response === "object" && $response) ? $response.body : undefined;
 
@@ -22,10 +26,13 @@
 
   var list = Object.keys(found);
   if (list.length && typeof $httpClient !== "undefined" && $httpClient.post) {
-    $httpClient.post(
-      { url: COLLECTOR, headers: { "Content-Type": "application/json" }, body: JSON.stringify(list) },
-      function () {}
-    );
+    var payload = JSON.stringify(list);
+    for (var i = 0; i < COLLECTORS.length; i++) {
+      $httpClient.post(
+        { url: COLLECTORS[i], headers: { "Content-Type": "application/json" }, body: payload },
+        function () {}
+      );
+    }
     console.log("[g1-send] gửi " + list.length + " SKU về Mac");
   }
 
