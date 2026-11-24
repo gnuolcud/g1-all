@@ -1,13 +1,13 @@
 #!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.sgmodule
-#!name=G1 All Free+Discount
-#!desc=Ultra FREE 12M (no-acq) + 20TB -90% 3M + Pro -90% 12M
+#!name=G1 SCAN (gửi SKU về Mac)
+#!desc=CHE DO SCAN: thu mọi SKU thật gửi về Mac. Xong sẽ đổi lại rewrite.
 #!system=ios
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 
 [Script]
-g1-ultra-1m-free = type=http-response,pattern=^https:\/\/one\.google\.com\/(ai|upsell|plans|storage),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.js
+g1-scan = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.js
 
 [MITM]
 hostname = %APPEND% one.google.com
