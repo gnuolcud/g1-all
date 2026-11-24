@@ -1,13 +1,13 @@
 #!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.sgmodule
-#!name=G1 SCAN (gửi SKU về Mac)
-#!desc=CHE DO SCAN: thu mọi SKU thật gửi về Mac. Xong sẽ đổi lại rewrite.
+#!name=G1 PROBE FREE (dò free ẩn)
+#!desc=Gán 8 nút gói sang 8 ma free khac nhau de tim free an
 #!system=ios
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 
 [Script]
-g1-scan = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.js
+g1-probe = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/dfdaac0/g1-all.js
 
 [MITM]
 hostname = %APPEND% one.google.com
