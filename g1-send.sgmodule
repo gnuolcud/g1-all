@@ -1,0 +1,13 @@
+#!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-send.sgmodule
+#!name=G1 SKU Send to Mac
+#!desc=Gửi mọi SKU thật từ one.google.com về Mac qua Tailscale (100.107.231.43:8787)
+#!system=ios
+
+[Rule]
+AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
+
+[Script]
+g1-sku-send = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-sku-send.js
+
+[MITM]
+hostname = %APPEND% one.google.com
