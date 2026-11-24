@@ -1,13 +1,13 @@
-#!url=https://cdn.jsdelivr.net/gh/gnuolcud/g1-all@main/g1-all.sgmodule
-#!name=G1 Ultra 1M Free
-#!desc=Ánh xạ tất cả các nút gói Google One iOS sang Google AI Ultra 30TB miễn phí 1 tháng (g1.ai.ultra.1month_eft.acq)
+#!url=https://cdn.jsdelivr.net/gh/gnuolcud/g1-all@test-12m/g1-all.sgmodule
+#!name=G1 Ultra 12M Free Test
+#!desc=Test Ultra 30TB free 12 tháng (g1.ai.ultra.12months_eft.acq)
 #!system=ios
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 
 [Script]
-g1-ultra-1m-free = type=http-response,pattern=^https:\/\/one\.google\.com\/(ai|upsell|plans|storage),requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/gnuolcud/g1-all@main/g1-all.js
+g1-ultra-1m-free = type=http-response,pattern=^https:\/\/one\.google\.com\/(ai|upsell|plans|storage),requires-body=1,max-size=0,script-path=https://cdn.jsdelivr.net/gh/gnuolcud/g1-all@test-12m/g1-all.js
 
 [MITM]
 hostname = %APPEND% one.google.com
