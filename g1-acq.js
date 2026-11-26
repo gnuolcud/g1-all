@@ -6,7 +6,7 @@
 function createG1MappingConfig(store) {
   "use strict";
 
-  var KEY = "g1.sku.mappings.v1";
+  var KEY = "g1.sku.mappings.v2";
   var LIMIT = 30;
   var DEFAULT_REVISION = "defaults-gemini-v1";
   var SOURCE_PREFIX = "g1.ios.2tb.";
@@ -20,8 +20,8 @@ function createG1MappingConfig(store) {
   function defaults() {
     return [
       { id: "default-2tb", match: "prefix", from: SOURCE_PREFIX, to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true },
-      { id: "default-20tb", match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.20tb.3months_ip_75p.acq", enabled: true },
-      { id: "default-30tb", match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.ai.ultra.3months_ip_75p.acq", enabled: true }
+      { id: "default-20tb", match: "exact", from: "g1.ios.20tb.m.v2", to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true },
+      { id: "default-30tb", match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true }
     ];
   }
 
