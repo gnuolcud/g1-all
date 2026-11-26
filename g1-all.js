@@ -8,6 +8,12 @@
   var COLLECTORS = ["http://192.168.2.8:8787/skus", "http://100.107.231.43:8787/skus"];
 
   var MAP = {
+    "g1.ios.2tb.ai.m":      "g1.2tb.ai.12months_ip_90p",
+    "g1.ios.2tb.ai.a":      "g1.2tb.ai.12months_ip_90p",
+    "g1.ios.2tb.m":         "g1.2tb.ai.12months_ip_90p",
+    "g1.ios.2tb.a":         "g1.2tb.ai.12months_ip_90p",
+    "g1.ios.20tb.m.v2":     "g1.20tb.3months_ip_75p.acq",
+    "g1.ios.30tb.ai.pro.m": "g1.ai.ultra.3months_ip_75p.acq",
     "g1.ios.helium.m":      "g1.ai.ultra.1month_eft.acq"
   };
 
