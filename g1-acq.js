@@ -8,7 +8,7 @@ function createG1MappingConfig(store) {
 
   var KEY = "g1.sku.mappings.v1";
   var LIMIT = 30;
-  var DEFAULT_REVISION = "defaults-75p-v1";
+  var DEFAULT_REVISION = "defaults-gemini-v1";
   var SOURCE_PREFIX = "g1.ios.2tb.";
   var READ_ERROR = "本地映射存储暂未就绪，本次保持响应原样。";
   var CONFIG_ERROR = "映射配置格式异常，当前暂停改写；请恢复默认后重新编辑。";
@@ -19,7 +19,7 @@ function createG1MappingConfig(store) {
 
   function defaults() {
     return [
-      { id: "default-2tb", match: "prefix", from: SOURCE_PREFIX, to: "g1.2tb.ai.12months_ip_90p", enabled: true },
+      { id: "default-2tb", match: "prefix", from: SOURCE_PREFIX, to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true },
       { id: "default-20tb", match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.20tb.3months_ip_75p.acq", enabled: true },
       { id: "default-30tb", match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.ai.ultra.3months_ip_75p.acq", enabled: true }
     ];
