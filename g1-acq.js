@@ -32,15 +32,16 @@
     "g1.2tb.6months_eft"
   ];
 
-  // Ultra: SKU Thổ (iOS confirmed) + fallback g1.* (Android)
+  var ULTRA_20TB_KEY = "g1.target.override.20tb";
+  var ULTRA_30TB_KEY = "g1.target.override.30tb";
+  var DEFAULT_20TB = "g1.ios.20tb.m";
+  var DEFAULT_30TB = "g1.ios.30tb.m";
+
   var SKU_MAP = {
-    "g1.ios.20tb.m.v2": "g1.ios.20tb.m",
-    "g1.ios.30tb.ai.pro.m": "g1.ios.30tb.m"
+    "g1.ios.20tb.m.v2": DEFAULT_20TB,
+    "g1.ios.30tb.ai.pro.m": DEFAULT_30TB
   };
-  var FALLBACK = {
-    "g1.ios.20tb.m": "g1.20tb.3months_ip_75p.acq",
-    "g1.ios.30tb.m": "g1.ai.ultra.3months_ip_75p.acq"
-  };
+  var FALLBACK = {};
 
   var TEST_KEY = "g1.pro.annual.test.v1";
   var SCAN_KEY = "g1.sku.scan.v1";
@@ -48,6 +49,7 @@
   var RECENT_LIMIT = 10;
   var MAX_EVENT_COUNT = 9007199254740991;
   var url = typeof $request === "object" && $request ? $request.url : "";
+  var validSku = /^(?:g1\.|com\.google\.)[A-Za-z0-9._-]{2,120}$/;
 
   if (typeof url !== "string" || !/^https:\/\/one\.google\.com\//.test(url) ||
       /^https:\/\/one\.google\.com\/g1-sku-report\/?(?:\?|$)/.test(url)) {
@@ -59,9 +61,11 @@
   try {
     if (typeof $persistentStore !== "undefined" && typeof $persistentStore.read === "function") {
       var customTarget = ($persistentStore.read(TARGET_OVERRIDE_KEY) || "").trim();
-      if (/^g1\.[A-Za-z0-9._-]{2,120}$/.test(customTarget)) {
-        TARGET = customTarget;
-      }
+      if (validSku.test(customTarget)) TARGET = customTarget;
+      var custom20 = ($persistentStore.read(ULTRA_20TB_KEY) || "").trim();
+      if (validSku.test(custom20)) SKU_MAP["g1.ios.20tb.m.v2"] = custom20;
+      var custom30 = ($persistentStore.read(ULTRA_30TB_KEY) || "").trim();
+      if (validSku.test(custom30)) SKU_MAP["g1.ios.30tb.ai.pro.m"] = custom30;
     }
   } catch (e) {}
 

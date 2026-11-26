@@ -42,17 +42,39 @@
     typeof $persistentStore.read === "function";
   var clearMessage = "";
 
-  // Handle interactive target switching via ?set_target=<sku>
-  var targetMatch = /(?:\?|&)set_target=([A-Za-z0-9._-]+)(?:&|$)/.exec(url);
+  var ULTRA_20TB_KEY = "g1.target.override.20tb";
+  var ULTRA_30TB_KEY = "g1.target.override.30tb";
+  var validSku = /^(?:g1\.|com\.google\.)[A-Za-z0-9._-]{2,120}$/;
+
+  // Handle interactive target switching via ?set_target=<sku> or ?set_20tb=<sku> or ?set_30tb=<sku>
+  var targetMatch = /(?:\?|&)set_target=([A-Za-z0-9._%-]+)(?:&|$)/.exec(url);
+  var ultra20Match = /(?:\?|&)set_20tb=([A-Za-z0-9._%-]+)(?:&|$)/.exec(url);
+  var ultra30Match = /(?:\?|&)set_30tb=([A-Za-z0-9._%-]+)(?:&|$)/.exec(url);
   if (targetMatch && storageAvailable) {
     var newTarget = decodeURIComponent(targetMatch[1]);
-    if (/^g1\.[A-Za-z0-9._-]{2,120}$/.test(newTarget)) {
+    if (validSku.test(newTarget)) {
       try {
         var okWrite = $persistentStore.write(newTarget, TARGET_OVERRIDE_KEY);
-        clearMessage = okWrite ? ("✅ 已将 2TB/Pro 默认改写目标切换为：" + newTarget + "（请返回 Google App 重新进入方案页触发改写）") : "目标切换写入失败。";
-      } catch (e) {
-        clearMessage = "本地存储接口暂未就绪。";
-      }
+        clearMessage = okWrite ? ("✅ Đã chuyển Pro 2TB/5TB → " + newTarget + " — Quay lại Google app để test.") : "Lỗi ghi.";
+      } catch (e) { clearMessage = "Lỗi storage."; }
+    }
+  }
+  if (ultra20Match && storageAvailable) {
+    var new20 = decodeURIComponent(ultra20Match[1]);
+    if (validSku.test(new20)) {
+      try {
+        var ok20 = $persistentStore.write(new20, ULTRA_20TB_KEY);
+        clearMessage = ok20 ? ("✅ Đã chuyển Ultra 20TB → " + new20 + " — Quay lại Google app để test.") : "Lỗi ghi.";
+      } catch (e) { clearMessage = "Lỗi storage."; }
+    }
+  }
+  if (ultra30Match && storageAvailable) {
+    var new30 = decodeURIComponent(ultra30Match[1]);
+    if (validSku.test(new30)) {
+      try {
+        var ok30 = $persistentStore.write(new30, ULTRA_30TB_KEY);
+        clearMessage = ok30 ? ("✅ Đã chuyển Ultra 30TB → " + new30 + " — Quay lại Google app để test.") : "Lỗi ghi.";
+      } catch (e) { clearMessage = "Lỗi storage."; }
     }
   }
 
@@ -60,19 +82,21 @@
     try {
       var scanCleared = $persistentStore.write("{}", SCAN_KEY);
       var testCleared = $persistentStore.write("{}", TEST_KEY);
-      clearMessage = scanCleared && testCleared ? "本工具的两份本地记录已清空。" : "本地记录清空未完成。";
-    } catch (error) {
-      clearMessage = "本地存储接口暂未就绪。";
-    }
+      clearMessage = scanCleared && testCleared ? "Đã xoá dữ liệu thu thập." : "Xoá chưa hoàn tất.";
+    } catch (error) { clearMessage = "Lỗi storage."; }
   }
 
   var CONFIGURED_TARGET = DEFAULT_TARGET;
+  var CONFIGURED_20TB = "g1.ios.20tb.m";
+  var CONFIGURED_30TB = "g1.ios.30tb.m";
   if (storageAvailable) {
     try {
       var custom = ($persistentStore.read(TARGET_OVERRIDE_KEY) || "").trim();
-      if (/^g1\.[A-Za-z0-9._-]{2,120}$/.test(custom)) {
-        CONFIGURED_TARGET = custom;
-      }
+      if (validSku.test(custom)) CONFIGURED_TARGET = custom;
+      var c20 = ($persistentStore.read(ULTRA_20TB_KEY) || "").trim();
+      if (validSku.test(c20)) CONFIGURED_20TB = c20;
+      var c30 = ($persistentStore.read(ULTRA_30TB_KEY) || "").trim();
+      if (validSku.test(c30)) CONFIGURED_30TB = c30;
     } catch (e) {}
   }
 
@@ -113,13 +137,13 @@
   }
 
   var scanStatuses = {
-    "new-skus": "发现并录入新编号",
-    "known-skus": "收到响应，编号与已有记录重复",
-    "no-skus": "收到文本响应，本次没有商品编号",
-    "limit-reached": "收到新编号，已达采集容量上限",
-    "non-text": "收到响应，正文不是可扫描文本"
+    "new-skus": "Tìm thấy SKU mới",
+    "known-skus": "SKU đã có trong danh sách",
+    "no-skus": "Không có SKU trong response",
+    "limit-reached": "Đạt giới hạn thu thập",
+    "non-text": "Response không phải text"
   };
-  var scanPaths = ["/", "/ai", "/plans", "/_/…/data/batchexecute", "[其他 one.google.com 路径]"];
+  var scanPaths = ["/", "/ai", "/plans", "/_/…/data/batchexecute", "[đường dẫn khác]"];
   function recent(value) {
     if (!Array.isArray(value)) return [];
     return value.slice(-10).filter(function (event) {
@@ -130,7 +154,7 @@
     }).map(function (event) {
       return {
         at: event.at,
-        path: scanPaths.indexOf(event.path) !== -1 ? event.path : "[其他 one.google.com 路径]",
+        path: scanPaths.indexOf(event.path) !== -1 ? event.path : "[đường dẫn khác]",
         bodyType: event.bodyType,
         status: event.status,
         candidateCount: count(event.candidateCount),
@@ -214,75 +238,103 @@
     });
   }
   function fallbackName(row) {
-    if (!row.fallback) return "否";
+    if (!row.fallback) return "Không";
     var discount = /_ip_(\d+p)\.acq$/.exec(row.to || "");
-    return discount ? discount[1] : "是";
+    return discount ? discount[1] : "Có";
   }
   function table(items, withTime) {
-    if (!items.length) return "<p>暂无记录。</p>";
-    return "<div class=scroll><table><thead><tr><th>完整商品编号</th><th>次数</th>" +
-      (withTime ? "<th>最近发现时间（UTC）</th>" : "<th>实际目标 SKU</th><th>备用档</th>") + "</tr></thead><tbody>" +
+    if (!items.length) return "<p>Chưa có dữ liệu.</p>";
+    return "<div class=scroll><table><thead><tr><th>Mã SKU</th><th>Số lần</th>" +
+      (withTime ? "<th>Lần cuối (UTC)</th>" : "<th>SKU mục tiêu</th><th>Dự phòng</th>") + "</tr></thead><tbody>" +
       items.map(function (row) {
         return "<tr><td><code>" + escape(row.id) + "</code></td><td>" + row.count + "</td>" +
           (withTime ? "<td>" + escape(row.lastSeen) + "</td>" :
-            "<td><code>" + escape(row.to || "未记录") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
+            "<td><code>" + escape(row.to || "Chưa ghi") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
       }).join("") + "</tbody></table></div>";
   }
   function recentTable(events) {
-    if (!events.length) return "<p>尚无逐次响应记录；旧版采集数据没有这项诊断。</p>";
-    return "<div class=scroll><table><thead><tr><th>时间（UTC）</th><th>路径分类</th><th>本次结果</th><th>识别编号</th><th>新增录入</th><th>容量外编号</th></tr></thead><tbody>" +
+    if (!events.length) return "<p>Chưa có lịch sử response.</p>";
+    return "<div class=scroll><table><thead><tr><th>Thời gian (UTC)</th><th>Đường dẫn</th><th>Kết quả</th><th>SKU tìm thấy</th><th>Mới thêm</th><th>Vượt giới hạn</th></tr></thead><tbody>" +
       events.slice().reverse().map(function (event) {
         return "<tr><td>" + escape(event.at) + "</td><td>" + escape(event.path) +
           "</td><td>" + scanStatuses[event.status] + "</td><td>" + event.candidateCount +
           "</td><td>" + event.addedCount + "</td><td>" + event.omittedCount + "</td></tr>";
       }).join("") + "</tbody></table></div>";
   }
+  var ULTRA_TEST_SKUS = [
+    { sku: "g1.ios.20tb.m", label: "Ultra 20TB · SKU Thổ [iOS OK, giá gốc]", tag: "THỔ 20T", plan: "20tb" },
+    { sku: "g1.ios.30tb.m", label: "Ultra 30TB · SKU Thổ [iOS OK, giá gốc]", tag: "THỔ 30T", plan: "30tb" },
+    { sku: "com.google.gemini.20tb.m.3month_ip_99p", label: "Test: Gemini 20TB 99% off", tag: "TEST", plan: "20tb" },
+    { sku: "com.google.gemini.20tb.ai.m.3month_ip_99p", label: "Test: Gemini AI 20TB 99% off", tag: "TEST", plan: "20tb" },
+    { sku: "com.google.one.20tb.m.3month_ip_99p", label: "Test: Google One 20TB 99% off", tag: "TEST", plan: "20tb" },
+    { sku: "com.google.gemini.30tb.ai.m.3month_ip_99p", label: "Test: Gemini 30TB 99% off", tag: "TEST", plan: "30tb" },
+    { sku: "com.google.gemini.ultra.m.3month_ip_99p", label: "Test: Gemini Ultra 99% off", tag: "TEST", plan: "30tb" },
+    { sku: "com.google.one.30tb.m.3month_ip_99p", label: "Test: Google One 30TB 99% off", tag: "TEST", plan: "30tb" },
+    { sku: "g1.play.20tb", label: "Test: Play 20TB", tag: "TEST", plan: "20tb" },
+    { sku: "g1.play.ai.pro", label: "Test: Play AI Pro 30TB", tag: "TEST", plan: "30tb" },
+    { sku: "g1.20tb.v2", label: "Test: g1.20tb.v2", tag: "TEST", plan: "20tb" },
+    { sku: "g1.ai.pro", label: "Test: g1.ai.pro", tag: "TEST", plan: "30tb" }
+  ];
   function presetTable() {
-    return "<div class=scroll><table><thead><tr><th>标签</th><th>隐藏 SKU (Product ID)</th><th>说明</th><th>操作</th></tr></thead><tbody>" +
+    return "<div class=scroll><table><thead><tr><th>Loại</th><th>Mã SKU</th><th>Mô tả</th><th>Thao tác</th></tr></thead><tbody>" +
       PRESET_SKUS.map(function (item) {
         var active = item.sku === CONFIGURED_TARGET;
         return "<tr" + (active ? " style=\"background:#eef8f2\"" : "") + "><td><strong>" + escape(item.tag) + "</strong></td><td><code>" + escape(item.sku) + "</code></td><td>" + escape(item.label) + "</td><td>" +
-          (active ? "<span class=badge>当前已启用</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">一键切换</a>") + "</td></tr>";
+          (active ? "<span class=badge>Đang dùng</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">Chọn</a>") + "</td></tr>";
+      }).join("") + "</tbody></table></div>";
+  }
+  function ultraTable() {
+    return "<div class=scroll><table><thead><tr><th>Loại</th><th>Mã SKU</th><th>Mô tả</th><th>Thao tác</th></tr></thead><tbody>" +
+      ULTRA_TEST_SKUS.map(function (item) {
+        var key = item.plan === "20tb" ? "set_20tb" : "set_30tb";
+        var current = item.plan === "20tb" ? CONFIGURED_20TB : CONFIGURED_30TB;
+        var active = item.sku === current;
+        return "<tr" + (active ? " style=\"background:#eef8f2\"" : "") + "><td><strong>" + escape(item.tag) + "</strong></td><td><code>" + escape(item.sku) + "</code></td><td>" + escape(item.label) + "</td><td>" +
+          (active ? "<span class=badge>Đang dùng</span>" : "<a href=\"" + ROOT + "?" + key + "=" + encodeURIComponent(item.sku) + "\">Chọn</a>") + "</td></tr>";
       }).join("") + "</tbody></table></div>";
   }
 
   var latestScan = report.scan.recentResponses.length ?
     report.scan.recentResponses[report.scan.recentResponses.length - 1] : null;
   var scanVersionStatus = report.scan.version === COLLECTOR_VERSION ?
-    "记录来自本版采集脚本；按响应时间与计数判断是否产生了新记录。" :
-    report.scan.version ? "旧采集记录；尚未保存本版采集响应记录。" : "尚未保存本版采集响应记录。";
+    "Dữ liệu từ phiên bản hiện tại." :
+    report.scan.version ? "Dữ liệu cũ; chưa có dữ liệu từ phiên bản mới." : "Chưa có dữ liệu thu thập.";
   var statuses = {
-    "rewritten": "已执行字符串替换",
-    "no-match": "本次响应未命中三档映射中的源商品",
-    "non-text": "本次响应没有可处理的文本正文"
+    "rewritten": "Đã rewrite thành công",
+    "no-match": "Không khớp SKU nào",
+    "non-text": "Response không phải text"
   };
   var status = Object.prototype.hasOwnProperty.call(statuses, report.test.status) ?
-    statuses[report.test.status] : "暂无测试执行记录";
+    statuses[report.test.status] : "Chưa có dữ liệu";
   var html = [
-    "<!doctype html><html lang=zh-CN><meta charset=utf-8>",
-    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU 本地控制台 & 报告</title>",
+    "<!doctype html><html lang=vi><meta charset=utf-8>",
+    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU - Bảng điều khiển</title>",
     "<style>body{font:16px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;max-width:960px;margin:24px auto;padding:0 18px;color:#1c2737;background:#f5f7fa}section{background:white;border:1px solid #dde3ec;border-radius:12px;padding:18px;margin:18px 0}h1{font-size:24px;margin-bottom:10px}h2{font-size:20px}code{overflow-wrap:anywhere}a{color:#1259be}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}.scroll{overflow:auto}.note{color:#46556b}.badge{display:inline-block;background:#e0f4e8;color:#176238;padding:4px 10px;border-radius:8px}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.actions form{margin:0}button,.actions a{font:inherit;padding:10px 16px;border:0;border-radius:8px;cursor:pointer;text-decoration:none}.actions a{background:#e4eaf3}.actions button{background:#1259be;color:white}button{background:#e4eaf3;color:#1c2737}</style>",
-    "<h1>Google One iOS 隐藏 SKU 本地控制台 & 报告</h1>",
-    "<p class=badge>本机脚本已接管 · " + VERSION + "</p>",
-    "<nav class=actions aria-label=报告操作><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>导出 JSON</button></form><a href=\"" + ROOT + "\">刷新报告</a></nav>",
+    "<h1>Google One - Bảng điều khiển SKU</h1>",
+    "<p class=badge>Module đang hoạt động · " + VERSION + "</p>",
+    "<nav class=actions><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>Xuất JSON</button></form><a href=\"" + ROOT + "\">Làm mới</a></nav>",
     clearMessage ? "<p style=\"background:#fff8db;padding:12px;border-radius:8px;border:1px solid #e6d087\">" + escape(clearMessage) + "</p>" : "",
-    "<section><h2>一键切换 2TB / Pro 5TB 隐藏目标 SKU</h2>",
-    "<p>当前生效的 <code>g1.ios.2tb.*</code> 改写目标：<code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
-    "<p class=note>点击下方任意行的「一键切换」即可在手机本地切换目标 SKU，无需修改脚本；切换后重新进入 Google App → Google One 管理页即可触发新 SKU 改写。Ultra 20TB / 30TB 自动保持 <code>g1.20tb.1month_eft.acq</code> / <code>g1.ai.ultra.1month_eft.acq</code>（自动回退 90p 1折）。</p>",
+    "<section><h2>Chọn gói Pro 2TB / 5TB</h2>",
+    "<p>Mục tiêu hiện tại: <code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
+    "<p class=note>Bấm \"Chọn\" rồi quay lại Google app → Google One để kích hoạt.</p>",
     presetTable(), "</section>",
-    "<section><h2>最近一次三档映射</h2>",
-    "<p>版本：" + escape(report.test.version || "暂无") + "<br>状态：" + escape(status) + "；总替换次数：" + report.test.hitCount + "；其中 2TB/Pro：" + report.test.annualHitCount + "</p>",
-    "<p>2TB 源前缀：<code>g1.ios.2tb.</code><br>该次记录的 2TB 目标：<code>" + escape(report.test.target || "暂无记录") + "</code><br>执行时间（UTC）：" + escape(report.test.updatedAt || "暂无") + "</p>",
+    "<section><h2>Chọn gói Ultra 20TB / 30TB (TEST)</h2>",
+    "<p>Ultra 20TB hiện tại: <code><strong>" + escape(CONFIGURED_20TB) + "</strong></code><br>Ultra 30TB hiện tại: <code><strong>" + escape(CONFIGURED_30TB) + "</strong></code></p>",
+    "<p class=note>Bấm \"Chọn\" → quay lại Google app → vào Ultra 20TB hoặc 30TB → xem checkout.</p>",
+    ultraTable(), "</section>",
+    "<section><h2>Lần rewrite gần nhất</h2>",
+    "<p>Phiên bản: " + escape(report.test.version || "Chưa có") + "<br>Trạng thái: " + escape(status) + "; Tổng thay thế: " + report.test.hitCount + "; 2TB/Pro: " + report.test.annualHitCount + "</p>",
+    "<p>Prefix: <code>g1.ios.2tb.</code><br>Mục tiêu: <code>" + escape(report.test.target || "Chưa có") + "</code><br>Thời gian (UTC): " + escape(report.test.updatedAt || "Chưa có") + "</p>",
     table(report.test.matchedFrom, false), "</section>",
-    "<section><h2>采集运行记录</h2>",
-    "<p>实际采集脚本：<code>" + escape(report.scan.version || "暂无记录") + "</code><br>" + scanVersionStatus + "</p>",
-    "<p>已扫描文本响应：" + report.scan.scannedResponses + "；已记录非文本响应：" + report.scan.nonTextResponses +
-      "；含商品编号的响应：" + report.scan.matchedResponses + "；累计编号：" + report.scan.skus.length + "</p>",
-    "<h3>最近 10 次响应</h3>", recentTable(report.scan.recentResponses), "</section>",
-    "<section><h2>浏览页面时采集到的候选 SKU</h2>",
+    "<section><h2>Lịch sử thu thập</h2>",
+    "<p>Script: <code>" + escape(report.scan.version || "Chưa có") + "</code><br>" + scanVersionStatus + "</p>",
+    "<p>Response đã quét: " + report.scan.scannedResponses + "; Không phải text: " + report.scan.nonTextResponses +
+      "; Có SKU: " + report.scan.matchedResponses + "; Tổng SKU: " + report.scan.skus.length + "</p>",
+    recentTable(report.scan.recentResponses), "</section>",
+    "<section><h2>Danh sách SKU đã thu thập</h2>",
     table(report.scan.skus, true), "</section>",
-    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>清空本工具的采集与测试记录</button></form>",
-    "<p class=note>开源致谢：本项目基于 <a href=\"https://github.com/crhywun/g1-acq\">crhywun/g1-acq</a> 与 PR #3 (@cehomecambodia-lang) 扩展构建。</p></html>"
+    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>Xoá dữ liệu thu thập</button></form>",
+    "<p class=note>Mã nguồn mở: dựa trên <a href=\"https://github.com/crhywun/g1-acq\">crhywun/g1-acq</a> và PR #3. Mở rộng bởi tgai521 v8.0 + gnuolcud v8.1-ios.</p></html>"
   ].join("");
   $done({ response: { status: 200, headers: headers, body: html } });
 })();
