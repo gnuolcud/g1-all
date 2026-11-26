@@ -17,27 +17,27 @@
   var TEST_KEY = "g1.pro.annual.test.v1";
 
   var PRESET_SKUS = [
-    { sku: "g1.2tb.ai.18months_eft", label: "★ Pro 5TB · 18个月 $0 免费试用 (eft-18months)", tag: "FREE 18M" },
-    { sku: "g1.2tb.ai.15months_eft", label: "★ Pro 5TB · 15个月 $0 免费试用 (eft-15months)", tag: "FREE 15M" },
-    { sku: "g1.2tb.ai.12months_eft", label: "★ Pro 5TB · 12个月 $0 免费试用 (eft-12months)", tag: "FREE 12M" },
-    { sku: "g1.2tb.ai.subs_variant", label: "Pro 5TB · 12个月/6个月 $0 免费试用变体 (subs_variant)", tag: "FREE 12M/6M" },
-    { sku: "g1.play.2tb.ai.student", label: "★ Pro 5TB · 学生通道 12个月 $0 免费试用 (eft-12mo)", tag: "FREE 12M" },
-    { sku: "g1.2tb.ai.6months_eft", label: "Pro 5TB · 6个月 $0 免费试用 (eft-6months)", tag: "FREE 6M" },
-    { sku: "g1.2tb.ai.4months_eft", label: "Pro 5TB · 4个月 $0 免费试用 (eft-4months)", tag: "FREE 4M" },
-    { sku: "g1.2tb.ai.3months_eft", label: "Pro 5TB · 3个月 $0 免费试用 (eft-3months)", tag: "FREE 3M" },
-    { sku: "g1.2tb.ai.2months_eft", label: "Pro 5TB · 2个月 $0 免费试用 (eft-2months)", tag: "FREE 2M" },
-    { sku: "g1.2tb.ai.12months_ip_90p", label: "Pro 5TB · 12个月 1折优惠 ($1.99/月 × 12 = $23.88)", tag: "$1.99×12M" },
-    { sku: "g1.2tb.ai.3months_ip_90p.acq", label: "Pro 5TB · 3个月 1折优惠 ($1.99/月 × 3)", tag: "$1.99×3M" },
-    { sku: "g1.2tb.ai.1month_ip_95p.acq", label: "Pro 5TB · 1个月 0.5折优惠 ($0.99/首月)", tag: "$0.99×1M" },
-    { sku: "g1.2tb.1year_eft", label: "★ AI Plus 2TB · 12个月 $0 免费试用 (1year_eft)", tag: "FREE 12M" },
-    { sku: "g1.2tb.6months_eft", label: "AI Plus 2TB · 6个月 $0 免费试用 (6months_eft)", tag: "FREE 6M" },
-    { sku: "g1.2tb.subs_variant", label: "AI Plus 2TB · 6个月/3个月 $0 免费试用变体", tag: "FREE 6M/3M" },
-    { sku: "g1.play.helium", label: "★ AI Plus 400GB · 12个月 $0 免费试用 (eft-12mo)", tag: "FREE 12M" },
-    { sku: "g1.play.helium.student", label: "AI Plus 400GB · 学生 12个月 $0 免费试用", tag: "FREE 12M" },
-    { sku: "g1.helium.12months_ip_90p", label: "AI Plus 400GB · 12个月 1折 ($0.49/月 × 12 = $5.88/年)", tag: "$0.49×12M" },
-    { sku: "g1.100gb.1year_eft", label: "★ 100GB 存储 · 12个月 $0 免费试用 (1year_eft)", tag: "FREE 12M" },
-    { sku: "g1.100gb.9months_eft", label: "★ 100GB 存储 · 9个月 $0 免费试用 (9months_eft)", tag: "FREE 9M" },
-    { sku: "g1.200gb.1year_eft", label: "★ 200GB 存储 · 12个月 $0 免费试用 (1year_eft)", tag: "FREE 12M" }
+    { sku: "g1.2tb.ai.18months_eft", label: "★ Pro 5TB · Mien phi 18 thang (eft-18months)", tag: "FREE 18T" },
+    { sku: "g1.2tb.ai.15months_eft", label: "★ Pro 5TB · Mien phi 15 thang (eft-15months)", tag: "FREE 15T" },
+    { sku: "g1.2tb.ai.12months_eft", label: "★ Pro 5TB · Mien phi 12 thang (eft-12months)", tag: "FREE 12T" },
+    { sku: "g1.2tb.ai.subs_variant", label: "Pro 5TB · Mien phi 12/6 thang bien the (subs_variant)", tag: "FREE 12T/6T" },
+    { sku: "g1.play.2tb.ai.student", label: "★ Pro 5TB · Sinh vien mien phi 12 thang (eft-12mo)", tag: "FREE 12T" },
+    { sku: "g1.2tb.ai.6months_eft", label: "Pro 5TB · Mien phi 6 thang (eft-6months)", tag: "FREE 6T" },
+    { sku: "g1.2tb.ai.4months_eft", label: "Pro 5TB · Mien phi 4 thang (eft-4months)", tag: "FREE 4T" },
+    { sku: "g1.2tb.ai.3months_eft", label: "Pro 5TB · Mien phi 3 thang (eft-3months)", tag: "FREE 3T" },
+    { sku: "g1.2tb.ai.2months_eft", label: "Pro 5TB · Mien phi 2 thang (eft-2months)", tag: "FREE 2T" },
+    { sku: "g1.2tb.ai.12months_ip_90p", label: "Pro 5TB · Giam 90% 12 thang ($1.99/thang x 12 = $23.88)", tag: "$1.99x12T" },
+    { sku: "g1.2tb.ai.3months_ip_90p.acq", label: "Pro 5TB · Giam 90% 3 thang ($1.99/thang x 3)", tag: "$1.99x3T" },
+    { sku: "g1.2tb.ai.1month_ip_95p.acq", label: "Pro 5TB · Giam 95% thang dau ($0.99/thang dau)", tag: "$0.99x1T" },
+    { sku: "g1.2tb.1year_eft", label: "★ AI Plus 2TB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" },
+    { sku: "g1.2tb.6months_eft", label: "AI Plus 2TB · Mien phi 6 thang (6months_eft)", tag: "FREE 6T" },
+    { sku: "g1.2tb.subs_variant", label: "AI Plus 2TB · Mien phi 6/3 thang bien the", tag: "FREE 6T/3T" },
+    { sku: "g1.play.helium", label: "★ AI Plus 400GB · Mien phi 12 thang (eft-12mo)", tag: "FREE 12T" },
+    { sku: "g1.play.helium.student", label: "AI Plus 400GB · Sinh vien mien phi 12 thang", tag: "FREE 12T" },
+    { sku: "g1.helium.12months_ip_90p", label: "AI Plus 400GB · Giam 90% 12 thang ($0.49/thang x 12 = $5.88/nam)", tag: "$0.49x12T" },
+    { sku: "g1.100gb.1year_eft", label: "★ 100GB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" },
+    { sku: "g1.100gb.9months_eft", label: "★ 100GB · Mien phi 9 thang (9months_eft)", tag: "FREE 9T" },
+    { sku: "g1.200gb.1year_eft", label: "★ 200GB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" }
   ];
 
   var url = typeof $request === "object" && $request ? $request.url : "";
@@ -57,9 +57,9 @@
     if (/^g1\.[A-Za-z0-9._-]{2,120}$/.test(newTarget)) {
       try {
         var okWrite = $persistentStore.write(newTarget, TARGET_OVERRIDE_KEY);
-        clearMessage = okWrite ? ("✅ 已将 2TB/Pro 默认改写目标切换为：" + newTarget + "（请返回 Google App 重新进入方案页触发改写）") : "目标切换写入失败。";
+        clearMessage = okWrite ? ("✅ Da chuyen muc tieu 2TB/Pro thanh: " + newTarget + " (vao lai Google One de kich hoat)") : "Luu that bai.";
       } catch (e) {
-        clearMessage = "本地存储接口暂未就绪。";
+        clearMessage = "Bo nho chua san sang.";
       }
     }
   }
@@ -68,9 +68,9 @@
     try {
       var scanCleared = $persistentStore.write("{}", SCAN_KEY);
       var testCleared = $persistentStore.write("{}", TEST_KEY);
-      clearMessage = scanCleared && testCleared ? "本工具的两份本地记录已清空。" : "本地记录清空未完成。";
+      clearMessage = scanCleared && testCleared ? "Da xoa sach du lieu." : "Xoa chua hoan tat.";
     } catch (error) {
-      clearMessage = "本地存储接口暂未就绪。";
+      clearMessage = "Bo nho chua san sang.";
     }
   }
 
@@ -121,11 +121,11 @@
   }
 
   var scanStatuses = {
-    "new-skus": "发现并录入新编号",
-    "known-skus": "收到响应，编号与已有记录重复",
-    "no-skus": "收到文本响应，本次没有商品编号",
-    "limit-reached": "收到新编号，已达采集容量上限",
-    "non-text": "收到响应，正文不是可扫描文本"
+    "new-skus": "Tim thay SKU moi",
+    "known-skus": "SKU da co trong danh sach",
+    "no-skus": "Khong co SKU trong response",
+    "limit-reached": "Dat gioi han thu thap",
+    "non-text": "Response khong phai text"
   };
   var scanPaths = ["/", "/ai", "/plans", "/_/…/data/batchexecute", "[其他 one.google.com 路径]"];
   function recent(value) {
@@ -222,23 +222,23 @@
     });
   }
   function fallbackName(row) {
-    if (!row.fallback) return "否";
+    if (!row.fallback) return "Khong";
     var discount = /_ip_(\d+p)\.acq$/.exec(row.to || "");
     return discount ? discount[1] : "是";
   }
   function table(items, withTime) {
-    if (!items.length) return "<p>暂无记录。</p>";
-    return "<div class=scroll><table><thead><tr><th>完整商品编号</th><th>次数</th>" +
-      (withTime ? "<th>最近发现时间（UTC）</th>" : "<th>实际目标 SKU</th><th>备用档</th>") + "</tr></thead><tbody>" +
+    if (!items.length) return "<p>Chua co du lieu.</p>";
+    return "<div class=scroll><table><thead><tr><th>Ma SKU</th><th>So lan</th>" +
+      (withTime ? "<th>Lan cuoi (UTC)</th>" : "<th>SKU muc tieu</th><th>Du phong</th>") + "</tr></thead><tbody>" +
       items.map(function (row) {
         return "<tr><td><code>" + escape(row.id) + "</code></td><td>" + row.count + "</td>" +
           (withTime ? "<td>" + escape(row.lastSeen) + "</td>" :
-            "<td><code>" + escape(row.to || "未记录") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
+            "<td><code>" + escape(row.to || "Chua ghi") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
       }).join("") + "</tbody></table></div>";
   }
   function recentTable(events) {
-    if (!events.length) return "<p>尚无逐次响应记录；旧版采集数据没有这项诊断。</p>";
-    return "<div class=scroll><table><thead><tr><th>时间（UTC）</th><th>路径分类</th><th>本次结果</th><th>识别编号</th><th>新增录入</th><th>容量外编号</th></tr></thead><tbody>" +
+    if (!events.length) return "<p>Chua co lich su response.</p>";
+    return "<div class=scroll><table><thead><tr><th>Thoi gian (UTC)</th><th>Duong dan</th><th>Ket qua</th><th>SKU tim thay</th><th>Moi them</th><th>Vuot gioi han</th></tr></thead><tbody>" +
       events.slice().reverse().map(function (event) {
         return "<tr><td>" + escape(event.at) + "</td><td>" + escape(event.path) +
           "</td><td>" + scanStatuses[event.status] + "</td><td>" + event.candidateCount +
@@ -246,50 +246,50 @@
       }).join("") + "</tbody></table></div>";
   }
   function presetTable() {
-    return "<div class=scroll><table><thead><tr><th>标签</th><th>隐藏 SKU (Product ID)</th><th>说明</th><th>操作</th></tr></thead><tbody>" +
+    return "<div class=scroll><table><thead><tr><th>Loai</th><th>Ma SKU</th><th>Mo ta</th><th>Thao tac</th></tr></thead><tbody>" +
       PRESET_SKUS.map(function (item) {
         var active = item.sku === CONFIGURED_TARGET;
         return "<tr" + (active ? " style=\"background:#eef8f2\"" : "") + "><td><strong>" + escape(item.tag) + "</strong></td><td><code>" + escape(item.sku) + "</code></td><td>" + escape(item.label) + "</td><td>" +
-          (active ? "<span class=badge>当前已启用</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">一键切换</a>") + "</td></tr>";
+          (active ? "<span class=badge>Dang dung</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">Chon goi nay</a>") + "</td></tr>";
       }).join("") + "</tbody></table></div>";
   }
 
   var latestScan = report.scan.recentResponses.length ?
     report.scan.recentResponses[report.scan.recentResponses.length - 1] : null;
   var scanVersionStatus = report.scan.version === COLLECTOR_VERSION ?
-    "记录来自本版采集脚本；按响应时间与计数判断是否产生了新记录。" :
-    report.scan.version ? "旧采集记录；尚未保存本版采集响应记录。" : "尚未保存本版采集响应记录。";
+    "Du lieu tu phien ban hien tai." :
+    report.scan.version ? "Du lieu cu; chua co du lieu tu phien ban moi." : "Chua co du lieu thu thap.";
   var statuses = {
-    "rewritten": "已执行字符串替换",
-    "no-match": "本次响应未命中三档映射中的源商品",
-    "non-text": "本次响应没有可处理的文本正文"
+    "rewritten": "Da rewrite thanh cong",
+    "no-match": "Khong khop SKU nao",
+    "non-text": "Response khong phai text"
   };
   var status = Object.prototype.hasOwnProperty.call(statuses, report.test.status) ?
-    statuses[report.test.status] : "暂无测试执行记录";
+    statuses[report.test.status] : "Chua co du lieu";
   var html = [
-    "<!doctype html><html lang=zh-CN><meta charset=utf-8>",
-    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU 本地控制台 & 报告</title>",
+    "<!doctype html><html lang=vi><meta charset=utf-8>",
+    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU - Bang dieu khien</title>",
     "<style>body{font:16px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;max-width:960px;margin:24px auto;padding:0 18px;color:#1c2737;background:#f5f7fa}section{background:white;border:1px solid #dde3ec;border-radius:12px;padding:18px;margin:18px 0}h1{font-size:24px;margin-bottom:10px}h2{font-size:20px}code{overflow-wrap:anywhere}a{color:#1259be}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}.scroll{overflow:auto}.note{color:#46556b}.badge{display:inline-block;background:#e0f4e8;color:#176238;padding:4px 10px;border-radius:8px}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.actions form{margin:0}button,.actions a{font:inherit;padding:10px 16px;border:0;border-radius:8px;cursor:pointer;text-decoration:none}.actions a{background:#e4eaf3}.actions button{background:#1259be;color:white}button{background:#e4eaf3;color:#1c2737}</style>",
-    "<h1>Google One iOS 隐藏 SKU 本地控制台 & 报告</h1>",
-    "<p class=badge>本机脚本已接管 · " + VERSION + "</p>",
-    "<nav class=actions aria-label=报告操作><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>导出 JSON</button></form><a href=\"" + ROOT + "\">刷新报告</a></nav>",
+    "<h1>Google One - Bang dieu khien SKU</h1>",
+    "<p class=badge>Module dang hoat dong · " + VERSION + "</p>",
+    "<nav class=actions aria-label=Menu><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>Xuat JSON</button></form><a href=\"" + ROOT + "\">Lam moi</a></nav>",
     clearMessage ? "<p style=\"background:#fff8db;padding:12px;border-radius:8px;border:1px solid #e6d087\">" + escape(clearMessage) + "</p>" : "",
-    "<section><h2>一键切换 2TB / Pro 5TB 隐藏目标 SKU</h2>",
-    "<p>当前生效的 <code>g1.ios.2tb.*</code> 改写目标：<code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
-    "<p class=note>点击下方任意行的「一键切换」即可在手机本地切换目标 SKU，无需修改脚本；切换后重新进入 Google App → Google One 管理页即可触发新 SKU 改写。Ultra 20TB / 30TB 自动保持 <code>g1.20tb.1month_eft.acq</code> / <code>g1.ai.ultra.1month_eft.acq</code>（自动回退 90p 1折）。</p>",
+    "<section><h2>Chon goi 2TB / Pro 5TB</h2>",
+    "<p>Muc tieu hien tai cua <code>g1.ios.2tb.*</code>: <code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
+    "<p class=note>Bam \"Chon goi nay\" de chuyen SKU ngay tren iPhone. Sau do vao lai Google One app de kich hoat. Ultra 20TB/30TB tu dong giu <code>g1.20tb.1month_eft.acq</code> / <code>g1.ai.ultra.1month_eft.acq</code> (tu dong fallback 90%).</p>",
     presetTable(), "</section>",
-    "<section><h2>最近一次三档映射</h2>",
-    "<p>版本：" + escape(report.test.version || "暂无") + "<br>状态：" + escape(status) + "；总替换次数：" + report.test.hitCount + "；其中 2TB/Pro：" + report.test.annualHitCount + "</p>",
-    "<p>2TB 源前缀：<code>g1.ios.2tb.</code><br>该次记录的 2TB 目标：<code>" + escape(report.test.target || "暂无记录") + "</code><br>执行时间（UTC）：" + escape(report.test.updatedAt || "暂无") + "</p>",
+    "<section><h2>Lan rewrite gan nhat</h2>",
+    "<p>Phien ban: " + escape(report.test.version || "Chua co") + "<br>Trang thai: " + escape(status) + "; Tong so thay the: " + report.test.hitCount + "; 2TB/Pro: " + report.test.annualHitCount + "</p>",
+    "<p>Prefix 2TB: <code>g1.ios.2tb.</code><br>Muc tieu 2TB: <code>" + escape(report.test.target || "Chua co") + "</code><br>Thoi gian (UTC): " + escape(report.test.updatedAt || "Chua co") + "</p>",
     table(report.test.matchedFrom, false), "</section>",
-    "<section><h2>采集运行记录</h2>",
-    "<p>实际采集脚本：<code>" + escape(report.scan.version || "暂无记录") + "</code><br>" + scanVersionStatus + "</p>",
-    "<p>已扫描文本响应：" + report.scan.scannedResponses + "；已记录非文本响应：" + report.scan.nonTextResponses +
-      "；含商品编号的响应：" + report.scan.matchedResponses + "；累计编号：" + report.scan.skus.length + "</p>",
-    "<h3>最近 10 次响应</h3>", recentTable(report.scan.recentResponses), "</section>",
-    "<section><h2>浏览页面时采集到的候选 SKU</h2>",
+    "<section><h2>Lich su thu thap</h2>",
+    "<p>Script thu thap: <code>" + escape(report.scan.version || "Chua co") + "</code><br>" + scanVersionStatus + "</p>",
+    "<p>Response da quet: " + report.scan.scannedResponses + "; Response khong phai text: " + report.scan.nonTextResponses +
+      "; Response co SKU: " + report.scan.matchedResponses + "; Tong SKU: " + report.scan.skus.length + "</p>",
+    "<h3>10 response gan nhat</h3>", recentTable(report.scan.recentResponses), "</section>",
+    "<section><h2>Danh sach SKU da thu thap</h2>",
     table(report.scan.skus, true), "</section>",
-    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>清空本工具的采集与测试记录</button></form>",
+    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>Xoa du lieu thu thap</button></form>",
     "<p class=note>开源致谢：本项目基于 <a href=\"https://github.com/crhywun/g1-acq\">crhywun/g1-acq</a> 与 PR #3 (@cehomecambodia-lang) 扩展构建。</p></html>"
   ].join("");
   $done({ response: { status: 200, headers: headers, body: html } });
