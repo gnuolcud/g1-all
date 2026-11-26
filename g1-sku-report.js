@@ -17,27 +17,27 @@
   var TEST_KEY = "g1.pro.annual.test.v1";
 
   var PRESET_SKUS = [
-    { sku: "g1.2tb.ai.18months_eft", label: "★ Pro 5TB · Mien phi 18 thang (eft-18months)", tag: "FREE 18T" },
-    { sku: "g1.2tb.ai.15months_eft", label: "★ Pro 5TB · Mien phi 15 thang (eft-15months)", tag: "FREE 15T" },
-    { sku: "g1.2tb.ai.12months_eft", label: "★ Pro 5TB · Mien phi 12 thang (eft-12months)", tag: "FREE 12T" },
-    { sku: "g1.2tb.ai.subs_variant", label: "Pro 5TB · Mien phi 12/6 thang bien the (subs_variant)", tag: "FREE 12T/6T" },
-    { sku: "g1.play.2tb.ai.student", label: "★ Pro 5TB · Sinh vien mien phi 12 thang (eft-12mo)", tag: "FREE 12T" },
-    { sku: "g1.2tb.ai.6months_eft", label: "Pro 5TB · Mien phi 6 thang (eft-6months)", tag: "FREE 6T" },
-    { sku: "g1.2tb.ai.4months_eft", label: "Pro 5TB · Mien phi 4 thang (eft-4months)", tag: "FREE 4T" },
-    { sku: "g1.2tb.ai.3months_eft", label: "Pro 5TB · Mien phi 3 thang (eft-3months)", tag: "FREE 3T" },
-    { sku: "g1.2tb.ai.2months_eft", label: "Pro 5TB · Mien phi 2 thang (eft-2months)", tag: "FREE 2T" },
-    { sku: "g1.2tb.ai.12months_ip_90p", label: "Pro 5TB · Giam 90% 12 thang ($1.99/thang x 12 = $23.88)", tag: "$1.99x12T" },
-    { sku: "g1.2tb.ai.3months_ip_90p.acq", label: "Pro 5TB · Giam 90% 3 thang ($1.99/thang x 3)", tag: "$1.99x3T" },
-    { sku: "g1.2tb.ai.1month_ip_95p.acq", label: "Pro 5TB · Giam 95% thang dau ($0.99/thang dau)", tag: "$0.99x1T" },
-    { sku: "g1.2tb.1year_eft", label: "★ AI Plus 2TB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" },
-    { sku: "g1.2tb.6months_eft", label: "AI Plus 2TB · Mien phi 6 thang (6months_eft)", tag: "FREE 6T" },
-    { sku: "g1.2tb.subs_variant", label: "AI Plus 2TB · Mien phi 6/3 thang bien the", tag: "FREE 6T/3T" },
-    { sku: "g1.play.helium", label: "★ AI Plus 400GB · Mien phi 12 thang (eft-12mo)", tag: "FREE 12T" },
-    { sku: "g1.play.helium.student", label: "AI Plus 400GB · Sinh vien mien phi 12 thang", tag: "FREE 12T" },
-    { sku: "g1.helium.12months_ip_90p", label: "AI Plus 400GB · Giam 90% 12 thang ($0.49/thang x 12 = $5.88/nam)", tag: "$0.49x12T" },
-    { sku: "g1.100gb.1year_eft", label: "★ 100GB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" },
-    { sku: "g1.100gb.9months_eft", label: "★ 100GB · Mien phi 9 thang (9months_eft)", tag: "FREE 9T" },
-    { sku: "g1.200gb.1year_eft", label: "★ 200GB · Mien phi 12 thang (1year_eft)", tag: "FREE 12T" }
+    { sku: "g1.2tb.ai.18months_eft", label: "★ Pro 5TB · Miễn phí 18 tháng (eft-18months)", tag: "FREE 18T" },
+    { sku: "g1.2tb.ai.15months_eft", label: "★ Pro 5TB · Miễn phí 15 tháng (eft-15months)", tag: "FREE 15T" },
+    { sku: "g1.2tb.ai.12months_eft", label: "★ Pro 5TB · Miễn phí 12 tháng (eft-12months)", tag: "FREE 12T" },
+    { sku: "g1.2tb.ai.subs_variant", label: "Pro 5TB · Miễn phí 12/6 tháng biến thể (subs_variant)", tag: "FREE 12T/6T" },
+    { sku: "g1.play.2tb.ai.student", label: "★ Pro 5TB · Sinh viên miễn phí 12 tháng (eft-12mo)", tag: "FREE 12T" },
+    { sku: "g1.2tb.ai.6months_eft", label: "Pro 5TB · Miễn phí 6 tháng (eft-6months)", tag: "FREE 6T" },
+    { sku: "g1.2tb.ai.4months_eft", label: "Pro 5TB · Miễn phí 4 tháng (eft-4months)", tag: "FREE 4T" },
+    { sku: "g1.2tb.ai.3months_eft", label: "Pro 5TB · Miễn phí 3 tháng (eft-3months)", tag: "FREE 3T" },
+    { sku: "g1.2tb.ai.2months_eft", label: "Pro 5TB · Miễn phí 2 tháng (eft-2months)", tag: "FREE 2T" },
+    { sku: "g1.2tb.ai.12months_ip_90p", label: "Pro 5TB · Giảm 90% trong 12 tháng ($1.99/tháng × 12 = $23.88)", tag: "$1.99×12T" },
+    { sku: "g1.2tb.ai.3months_ip_90p.acq", label: "Pro 5TB · Giảm 90% trong 3 tháng ($1.99/tháng × 3)", tag: "$1.99×3T" },
+    { sku: "g1.2tb.ai.1month_ip_95p.acq", label: "Pro 5TB · Giảm 95% tháng đầu ($0.99/tháng đầu)", tag: "$0.99×1T" },
+    { sku: "g1.2tb.1year_eft", label: "★ AI Plus 2TB · Miễn phí 12 tháng (1year_eft)", tag: "FREE 12T" },
+    { sku: "g1.2tb.6months_eft", label: "AI Plus 2TB · Miễn phí 6 tháng (6months_eft)", tag: "FREE 6T" },
+    { sku: "g1.2tb.subs_variant", label: "AI Plus 2TB · Miễn phí 6/3 tháng biến thể", tag: "FREE 6T/3T" },
+    { sku: "g1.play.helium", label: "★ AI Plus 400GB · Miễn phí 12 tháng (eft-12mo)", tag: "FREE 12T" },
+    { sku: "g1.play.helium.student", label: "AI Plus 400GB · Sinh viên miễn phí 12 tháng", tag: "FREE 12T" },
+    { sku: "g1.helium.12months_ip_90p", label: "AI Plus 400GB · Giảm 90% trong 12 tháng ($0.49/tháng × 12 = $5.88/năm)", tag: "$0.49×12T" },
+    { sku: "g1.100gb.1year_eft", label: "★ 100GB · Miễn phí 12 tháng (1year_eft)", tag: "FREE 12T" },
+    { sku: "g1.100gb.9months_eft", label: "★ 100GB · Miễn phí 9 tháng (9months_eft)", tag: "FREE 9T" },
+    { sku: "g1.200gb.1year_eft", label: "★ 200GB · Miễn phí 12 tháng (1year_eft)", tag: "FREE 12T" }
   ];
 
   var url = typeof $request === "object" && $request ? $request.url : "";
@@ -57,9 +57,9 @@
     if (/^g1\.[A-Za-z0-9._-]{2,120}$/.test(newTarget)) {
       try {
         var okWrite = $persistentStore.write(newTarget, TARGET_OVERRIDE_KEY);
-        clearMessage = okWrite ? ("✅ Da chuyen muc tieu 2TB/Pro thanh: " + newTarget + " (vao lai Google One de kich hoat)") : "Luu that bai.";
+        clearMessage = okWrite ? ("✅ Đã chuyển mục tiêu 2TB/Pro thành: " + newTarget + " (vào lại Google One để kích hoạt)") : "Lưu thất bại.";
       } catch (e) {
-        clearMessage = "Bo nho chua san sang.";
+        clearMessage = "Bộ nhớ chưa sẵn sàng.";
       }
     }
   }
@@ -68,9 +68,9 @@
     try {
       var scanCleared = $persistentStore.write("{}", SCAN_KEY);
       var testCleared = $persistentStore.write("{}", TEST_KEY);
-      clearMessage = scanCleared && testCleared ? "Da xoa sach du lieu." : "Xoa chua hoan tat.";
+      clearMessage = scanCleared && testCleared ? "Đã xóa sạch dữ liệu." : "Xóa chưa hoàn tất.";
     } catch (error) {
-      clearMessage = "Bo nho chua san sang.";
+      clearMessage = "Bộ nhớ chưa sẵn sàng.";
     }
   }
 
@@ -121,13 +121,13 @@
   }
 
   var scanStatuses = {
-    "new-skus": "Tim thay SKU moi",
-    "known-skus": "SKU da co trong danh sach",
-    "no-skus": "Khong co SKU trong response",
-    "limit-reached": "Dat gioi han thu thap",
-    "non-text": "Response khong phai text"
+    "new-skus": "Tìm thấy SKU mới",
+    "known-skus": "SKU đã có trong danh sách",
+    "no-skus": "Không có SKU trong response",
+    "limit-reached": "Đạt giới hạn thu thập",
+    "non-text": "Response không phải text"
   };
-  var scanPaths = ["/", "/ai", "/plans", "/_/…/data/batchexecute", "[其他 one.google.com 路径]"];
+  var scanPaths = ["/", "/ai", "/plans", "/_/…/data/batchexecute", "[đường dẫn khác]"];
   function recent(value) {
     if (!Array.isArray(value)) return [];
     return value.slice(-10).filter(function (event) {
@@ -138,7 +138,7 @@
     }).map(function (event) {
       return {
         at: event.at,
-        path: scanPaths.indexOf(event.path) !== -1 ? event.path : "[其他 one.google.com 路径]",
+        path: scanPaths.indexOf(event.path) !== -1 ? event.path : "[đường dẫn khác]",
         bodyType: event.bodyType,
         status: event.status,
         candidateCount: count(event.candidateCount),
@@ -222,23 +222,23 @@
     });
   }
   function fallbackName(row) {
-    if (!row.fallback) return "Khong";
+    if (!row.fallback) return "Không";
     var discount = /_ip_(\d+p)\.acq$/.exec(row.to || "");
-    return discount ? discount[1] : "是";
+    return discount ? discount[1] : "Có";
   }
   function table(items, withTime) {
-    if (!items.length) return "<p>Chua co du lieu.</p>";
-    return "<div class=scroll><table><thead><tr><th>Ma SKU</th><th>So lan</th>" +
-      (withTime ? "<th>Lan cuoi (UTC)</th>" : "<th>SKU muc tieu</th><th>Du phong</th>") + "</tr></thead><tbody>" +
+    if (!items.length) return "<p>Chưa có dữ liệu.</p>";
+    return "<div class=scroll><table><thead><tr><th>Mã SKU</th><th>Số lần</th>" +
+      (withTime ? "<th>Lần cuối (UTC)</th>" : "<th>SKU mục tiêu</th><th>Dự phòng</th>") + "</tr></thead><tbody>" +
       items.map(function (row) {
         return "<tr><td><code>" + escape(row.id) + "</code></td><td>" + row.count + "</td>" +
           (withTime ? "<td>" + escape(row.lastSeen) + "</td>" :
-            "<td><code>" + escape(row.to || "Chua ghi") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
+            "<td><code>" + escape(row.to || "Chưa ghi") + "</code></td><td>" + fallbackName(row) + "</td>") + "</tr>";
       }).join("") + "</tbody></table></div>";
   }
   function recentTable(events) {
-    if (!events.length) return "<p>Chua co lich su response.</p>";
-    return "<div class=scroll><table><thead><tr><th>Thoi gian (UTC)</th><th>Duong dan</th><th>Ket qua</th><th>SKU tim thay</th><th>Moi them</th><th>Vuot gioi han</th></tr></thead><tbody>" +
+    if (!events.length) return "<p>Chưa có lịch sử response.</p>";
+    return "<div class=scroll><table><thead><tr><th>Thời gian (UTC)</th><th>Đường dẫn</th><th>Kết quả</th><th>SKU tìm thấy</th><th>Mới thêm</th><th>Vượt giới hạn</th></tr></thead><tbody>" +
       events.slice().reverse().map(function (event) {
         return "<tr><td>" + escape(event.at) + "</td><td>" + escape(event.path) +
           "</td><td>" + scanStatuses[event.status] + "</td><td>" + event.candidateCount +
@@ -246,51 +246,51 @@
       }).join("") + "</tbody></table></div>";
   }
   function presetTable() {
-    return "<div class=scroll><table><thead><tr><th>Loai</th><th>Ma SKU</th><th>Mo ta</th><th>Thao tac</th></tr></thead><tbody>" +
+    return "<div class=scroll><table><thead><tr><th>Loại</th><th>Mã SKU</th><th>Mô tả</th><th>Thao tác</th></tr></thead><tbody>" +
       PRESET_SKUS.map(function (item) {
         var active = item.sku === CONFIGURED_TARGET;
         return "<tr" + (active ? " style=\"background:#eef8f2\"" : "") + "><td><strong>" + escape(item.tag) + "</strong></td><td><code>" + escape(item.sku) + "</code></td><td>" + escape(item.label) + "</td><td>" +
-          (active ? "<span class=badge>Dang dung</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">Chon goi nay</a>") + "</td></tr>";
+          (active ? "<span class=badge>Đang dùng</span>" : "<a href=\"" + ROOT + "?set_target=" + encodeURIComponent(item.sku) + "\">Chọn gói này</a>") + "</td></tr>";
       }).join("") + "</tbody></table></div>";
   }
 
   var latestScan = report.scan.recentResponses.length ?
     report.scan.recentResponses[report.scan.recentResponses.length - 1] : null;
   var scanVersionStatus = report.scan.version === COLLECTOR_VERSION ?
-    "Du lieu tu phien ban hien tai." :
-    report.scan.version ? "Du lieu cu; chua co du lieu tu phien ban moi." : "Chua co du lieu thu thap.";
+    "Dữ liệu từ phiên bản hiện tại." :
+    report.scan.version ? "Dữ liệu cũ; chưa có dữ liệu từ phiên bản mới." : "Chưa có dữ liệu thu thập.";
   var statuses = {
-    "rewritten": "Da rewrite thanh cong",
-    "no-match": "Khong khop SKU nao",
-    "non-text": "Response khong phai text"
+    "rewritten": "Đã rewrite thành công",
+    "no-match": "Không khớp SKU nào",
+    "non-text": "Response không phải text"
   };
   var status = Object.prototype.hasOwnProperty.call(statuses, report.test.status) ?
-    statuses[report.test.status] : "Chua co du lieu";
+    statuses[report.test.status] : "Chưa có dữ liệu";
   var html = [
     "<!doctype html><html lang=vi><meta charset=utf-8>",
-    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU - Bang dieu khien</title>",
+    "<meta name=viewport content=\"width=device-width,initial-scale=1\"><title>Google One SKU - Bảng điều khiển</title>",
     "<style>body{font:16px/1.6 -apple-system,BlinkMacSystemFont,sans-serif;max-width:960px;margin:24px auto;padding:0 18px;color:#1c2737;background:#f5f7fa}section{background:white;border:1px solid #dde3ec;border-radius:12px;padding:18px;margin:18px 0}h1{font-size:24px;margin-bottom:10px}h2{font-size:20px}code{overflow-wrap:anywhere}a{color:#1259be}table{border-collapse:collapse;width:100%;font-size:14px}td,th{padding:9px;border-bottom:1px solid #ddd;text-align:left;vertical-align:top}.scroll{overflow:auto}.note{color:#46556b}.badge{display:inline-block;background:#e0f4e8;color:#176238;padding:4px 10px;border-radius:8px}.actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:20px 0}.actions form{margin:0}button,.actions a{font:inherit;padding:10px 16px;border:0;border-radius:8px;cursor:pointer;text-decoration:none}.actions a{background:#e4eaf3}.actions button{background:#1259be;color:white}button{background:#e4eaf3;color:#1c2737}</style>",
-    "<h1>Google One - Bang dieu khien SKU</h1>",
-    "<p class=badge>Module dang hoat dong · " + VERSION + "</p>",
-    "<nav class=actions aria-label=Menu><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>Xuat JSON</button></form><a href=\"" + ROOT + "\">Lam moi</a></nav>",
+    "<h1>Google One - Bảng điều khiển SKU</h1>",
+    "<p class=badge>Module đang hoạt động · " + VERSION + "</p>",
+    "<nav class=actions aria-label=Menu><form method=get action=\"" + ROOT + "\"><button type=submit name=format value=json>Xuất JSON</button></form><a href=\"" + ROOT + "\">Làm mới</a></nav>",
     clearMessage ? "<p style=\"background:#fff8db;padding:12px;border-radius:8px;border:1px solid #e6d087\">" + escape(clearMessage) + "</p>" : "",
-    "<section><h2>Chon goi 2TB / Pro 5TB</h2>",
-    "<p>Muc tieu hien tai cua <code>g1.ios.2tb.*</code>: <code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
-    "<p class=note>Bam \"Chon goi nay\" de chuyen SKU ngay tren iPhone. Sau do vao lai Google One app de kich hoat. Ultra 20TB/30TB tu dong giu <code>g1.20tb.1month_eft.acq</code> / <code>g1.ai.ultra.1month_eft.acq</code> (tu dong fallback 90%).</p>",
+    "<section><h2>Chọn gói 2TB / Pro 5TB</h2>",
+    "<p>Mục tiêu hiện tại của <code>g1.ios.2tb.*</code>: <code><strong>" + escape(CONFIGURED_TARGET) + "</strong></code></p>",
+    "<p class=note>Bấm \"Chọn gói này\" để chuyển SKU ngay trên iPhone. Sau đó vào lại Google One app để kích hoạt. Ultra 20TB/30TB tự động giữ <code>g1.20tb.1month_eft.acq</code> / <code>g1.ai.ultra.1month_eft.acq</code> (tự động fallback 90%).</p>",
     presetTable(), "</section>",
-    "<section><h2>Lan rewrite gan nhat</h2>",
-    "<p>Phien ban: " + escape(report.test.version || "Chua co") + "<br>Trang thai: " + escape(status) + "; Tong so thay the: " + report.test.hitCount + "; 2TB/Pro: " + report.test.annualHitCount + "</p>",
-    "<p>Prefix 2TB: <code>g1.ios.2tb.</code><br>Muc tieu 2TB: <code>" + escape(report.test.target || "Chua co") + "</code><br>Thoi gian (UTC): " + escape(report.test.updatedAt || "Chua co") + "</p>",
+    "<section><h2>Lần rewrite gần nhất</h2>",
+    "<p>Phiên bản: " + escape(report.test.version || "Chưa có") + "<br>Trạng thái: " + escape(status) + "; Tổng số thay thế: " + report.test.hitCount + "; 2TB/Pro: " + report.test.annualHitCount + "</p>",
+    "<p>Prefix 2TB: <code>g1.ios.2tb.</code><br>Mục tiêu 2TB: <code>" + escape(report.test.target || "Chưa có") + "</code><br>Thời gian (UTC): " + escape(report.test.updatedAt || "Chưa có") + "</p>",
     table(report.test.matchedFrom, false), "</section>",
-    "<section><h2>Lich su thu thap</h2>",
-    "<p>Script thu thap: <code>" + escape(report.scan.version || "Chua co") + "</code><br>" + scanVersionStatus + "</p>",
-    "<p>Response da quet: " + report.scan.scannedResponses + "; Response khong phai text: " + report.scan.nonTextResponses +
-      "; Response co SKU: " + report.scan.matchedResponses + "; Tong SKU: " + report.scan.skus.length + "</p>",
-    "<h3>10 response gan nhat</h3>", recentTable(report.scan.recentResponses), "</section>",
-    "<section><h2>Danh sach SKU da thu thap</h2>",
+    "<section><h2>Lịch sử thu thập</h2>",
+    "<p>Script thu thập: <code>" + escape(report.scan.version || "Chưa có") + "</code><br>" + scanVersionStatus + "</p>",
+    "<p>Response đã quét: " + report.scan.scannedResponses + "; Response không phải text: " + report.scan.nonTextResponses +
+      "; Response có SKU: " + report.scan.matchedResponses + "; Tổng SKU: " + report.scan.skus.length + "</p>",
+    "<h3>10 response gần nhất</h3>", recentTable(report.scan.recentResponses), "</section>",
+    "<section><h2>Danh sách SKU đã thu thập</h2>",
     table(report.scan.skus, true), "</section>",
-    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>Xoa du lieu thu thap</button></form>",
-    "<p class=note>开源致谢：本项目基于 <a href=\"https://github.com/crhywun/g1-acq\">crhywun/g1-acq</a> 与 PR #3 (@cehomecambodia-lang) 扩展构建。</p></html>"
+    "<form method=get action=\"" + ROOT + "\"><button name=clear value=1>Xóa dữ liệu thu thập</button></form>",
+    "<p class=note>Mã nguồn mở: dựa trên <a href=\"https://github.com/crhywun/g1-acq\">crhywun/g1-acq</a> và PR #3 (cehomecambodia-lang). Mở rộng bởi tgai521/g1-acq-plus v8.0.</p></html>"
   ].join("");
   $done({ response: { status: 200, headers: headers, body: html } });
 })();

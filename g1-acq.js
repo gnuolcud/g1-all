@@ -256,7 +256,7 @@
     path = path.replace(/\/+$/, "") || "/";
     if (path === "/" || path === "/ai" || path === "/plans") return path;
     if (/^\/_\/[^?#]+\/data\/batchexecute$/.test(path)) return "/_/…/data/batchexecute";
-    return "[其他 one.google.com 路径]";
+    return "[đường dẫn khác]";
   }
 
   function responseStatus(bodyType, candidateCount, addedCount, omittedCount) {
@@ -271,7 +271,7 @@
     if (typeof row.at !== "string" || !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3}Z$/.test(row.at) ||
         !isFinite(Date.parse(row.at)) || new Date(row.at).toISOString() !== row.at) return null;
     if (row.path !== "/" && row.path !== "/ai" && row.path !== "/plans" &&
-        row.path !== "/_/…/data/batchexecute" && row.path !== "[其他 one.google.com 路径]") return null;
+        row.path !== "/_/…/data/batchexecute" && row.path !== "[đường dẫn khác]") return null;
     if (row.bodyType !== "text" && row.bodyType !== "non-text") return null;
 
     function counter(value, maximum) {
