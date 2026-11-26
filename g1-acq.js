@@ -13,11 +13,15 @@
   var SOURCE_PREFIX = "g1.ios.2tb.";
   var TARGET_OVERRIDE_KEY = "g1.target.override.v1";
 
-  // Default target for 2TB / Pro 5TB: newly discovered 18-month $0 free trial (can be switched in Safari at https://one.google.com/g1-sku-report)
-  var DEFAULT_TARGET = "g1.2tb.ai.18months_eft";
+  // Default: 12 tháng giảm 90% ($1.99/tháng) — gói tốt nhất hoạt động trên iOS
+  // Free trial (eft) không dùng được trên iOS vì Apple không có SKU đó
+  var DEFAULT_TARGET = "g1.2tb.ai.12months_ip_90p";
 
-  // Priority chain for 2TB / Pro 5TB when auto-selecting from response body
+  // Priority chain: giảm giá trước (hoạt động trên iOS), free trial sau (chỉ Android)
   var PRO_CHAIN = [
+    "g1.2tb.ai.12months_ip_90p",
+    "g1.2tb.ai.3months_ip_90p.acq",
+    "g1.2tb.ai.1month_ip_95p.acq",
     "g1.2tb.ai.18months_eft",
     "g1.2tb.ai.15months_eft",
     "g1.2tb.ai.12months_eft",
@@ -28,10 +32,7 @@
     "g1.2tb.ai.3months_eft",
     "g1.2tb.ai.2months_eft",
     "g1.2tb.1year_eft",
-    "g1.2tb.6months_eft",
-    "g1.2tb.ai.12months_ip_90p",
-    "g1.2tb.ai.3months_ip_90p.acq",
-    "g1.2tb.ai.1month_ip_95p.acq"
+    "g1.2tb.6months_eft"
   ];
 
   var SKU_MAP = {
