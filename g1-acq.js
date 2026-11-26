@@ -6,7 +6,7 @@
 function createG1MappingConfig(store) {
   "use strict";
 
-  var KEY = "g1.sku.mappings.v2";
+  var KEY = "g1.sku.mappings.v3";
   var LIMIT = 30;
   var DEFAULT_REVISION = "defaults-gemini-v1";
   var SOURCE_PREFIX = "g1.ios.2tb.";
@@ -20,8 +20,8 @@ function createG1MappingConfig(store) {
   function defaults() {
     return [
       { id: "default-2tb", match: "prefix", from: SOURCE_PREFIX, to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true },
-      { id: "default-20tb", match: "exact", from: "g1.ios.20tb.m.v2", to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true },
-      { id: "default-30tb", match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "com.google.gemini.2tb.ai.m.3month_ip_99p", enabled: true }
+      { id: "default-20tb", match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.ios.20tb.m", enabled: true },
+      { id: "default-30tb", match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.ios.30tb.m", enabled: true }
     ];
   }
 
@@ -52,20 +52,44 @@ function createG1MappingConfig(store) {
         ]
       },
       {
-        id: "ultra-75p",
-        title: "Ultra 20TB / 30TB · 三个月 75p",
-        description: "20TB 与 30TB 一起切换到现有 75p 目标；75p 表示减免 75%，实付 25%。",
+        id: "ultra-turkey",
+        title: "Ultra Thổ 20TB+30TB (iOS confirmed)",
+        description: "SKU Thổ Nhĩ Kỳ — confirmed hoạt động trên iOS. Giá theo vùng App Store.",
         rules: [
-          { match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.20tb.3months_ip_75p.acq", enabled: true },
-          { match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.ai.ultra.3months_ip_75p.acq", enabled: true }
+          { match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.ios.20tb.m", enabled: true },
+          { match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.ios.30tb.m", enabled: true }
         ]
       },
       {
-        id: "pro-12months-90p",
-        title: "2TB / Pro · 12个月 90p",
-        description: "使用现有 2TB 前缀和 12个月优惠目标；商品周期按 App Store 购买面板显示。",
+        id: "ultra-gemini-20tb",
+        title: "Test: Gemini Ultra 20TB",
+        description: "Thử SKU Gemini cho 20TB — chưa xác nhận, test xem Apple chấp nhận không.",
         rules: [
-          { match: "prefix", from: SOURCE_PREFIX, to: "g1.2tb.ai.12months_ip_90p", enabled: true }
+          { match: "exact", from: "g1.ios.20tb.m.v2", to: "com.google.gemini.20tb.m.3month_ip_99p", enabled: true }
+        ]
+      },
+      {
+        id: "ultra-gemini-30tb",
+        title: "Test: Gemini Ultra 30TB",
+        description: "Thử SKU Gemini cho 30TB — chưa xác nhận, test xem Apple chấp nhận không.",
+        rules: [
+          { match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "com.google.gemini.30tb.ai.m.3month_ip_99p", enabled: true }
+        ]
+      },
+      {
+        id: "ultra-play-20tb",
+        title: "Test: Play 20TB",
+        description: "Thử g1.play.20tb — SKU Play Store cho 20TB.",
+        rules: [
+          { match: "exact", from: "g1.ios.20tb.m.v2", to: "g1.play.20tb", enabled: true }
+        ]
+      },
+      {
+        id: "ultra-play-ai-pro",
+        title: "Test: Play AI Pro 30TB",
+        description: "Thử g1.play.ai.pro — SKU Play Store cho AI Ultra 30TB.",
+        rules: [
+          { match: "exact", from: "g1.ios.30tb.ai.pro.m", to: "g1.play.ai.pro", enabled: true }
         ]
       }
     ];

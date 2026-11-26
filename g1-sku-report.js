@@ -21,7 +21,7 @@
 function createG1MappingConfig(store) {
   "use strict";
 
-  var KEY = "g1.sku.mappings.v2";
+  var KEY = "g1.sku.mappings.v3";
   var LIMIT = 30;
   var DEFAULT_REVISION = "defaults-75p-v1";
   var SOURCE_PREFIX = "g1.ios.2tb.";
