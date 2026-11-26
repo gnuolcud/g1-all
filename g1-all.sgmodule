@@ -1,13 +1,13 @@
 #!url=https://raw.githubusercontent.com/gnuolcud/g1-all/main/g1-all.sgmodule
-#!name=G1 PROBE v3 (ma that)
-#!desc=Test ma that tu catalog frida.js tren iOS (FREE 6 thang + nhieu discount moi)
+#!name=G1 FREE 12 THANG
+#!desc=Test 12-month free: ultra/pro/20tb 12months_eft
 #!system=ios
 
 [Rule]
 AND,((PROTOCOL,UDP),(DEST-PORT,443)),REJECT-NO-DROP
 
 [Script]
-g1-probe3 = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/17342ff/g1-all.js
+g1-probe3 = type=http-response,pattern=^https:\/\/one\.google\.com\/,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/gnuolcud/g1-all/25252d7/g1-all.js
 
 [MITM]
 hostname = %APPEND% one.google.com
